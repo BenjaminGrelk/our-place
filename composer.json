@@ -65,6 +65,8 @@
     "prefer-stable": true,
     "post-install-cmd": [
      "php artisan clear-compiled",
-     "php artisan key:generate"
+     "php artisan key:generate",
+     "php artisan config:cache",
+     "chmod -744 .env"
  ]
 }
