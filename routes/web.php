@@ -24,7 +24,3 @@ Route::post('/login', function () {
         'password' => request('password')
     ]);
 })->name('login');
-
-Route::get('users', function () {
-    return 'Users cool!';
-});
