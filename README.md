@@ -1,66 +1,68 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+    <h1>Our Place</h1>
+</div>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+* [Business Rules](## Business Rules)
 
-## About Laravel
+## Business Rules
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Users
+The people who use the site  
+* Can make many posts
+* Can follow many other users
+* Track:  
+  * User ID: a unique, hidden value to identify each user
+  * Username: a unique, publicly visible name for each user
+  * Password: an encrypted, hidden value for authentication
+  * Description: an optional, publicly displayed description of the user
+  * Status: a short description of what the user is doing
+  * Profile picture: a circular picture displayed on posts
+  * External link: an optional link to any page the user wants
+  * Is admin: if the user is an admin, which gives elevated permissions
+  * Joined on: a timestamp that shows when the user made their account
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Posts
+Content created by the users in a channel  
+* Posts are made by one and only one user
+* Posts can be reacted to by many users
+* Track:
+  * Post ID: unique identifier for each post
+  * Channel ID: ID of the channel the post is in
+  * Author ID: ID of the user who made the post
+  * Title: user-inputted subject of the post
+  * Content: the text of the post
+  * Attachment: an optional image to be displayed under the post
+  * Reply to: if the post is responding to another, this holds the post ID
+  * Created on: the datetime the post was made
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Channels
+A container for posts of a specified topic  
+* Made by one user
+* Can have no or many posts
+* Track:
+  * Channel ID: unique identifier of the channel
+  * Created by: the user who created the channel
+  * Name: the name of the channel
+  * Description: text that describes what messages should be in a channel
+  * Created on: the time the channel was created
 
-## Learning Laravel
+### Likes
+The relationship between users and posts  
+* A post can be liked by many users
+* A user may like many posts
+* A user may not both like and dislike a post
+* A user may react to their own post
+* Track:
+  * User ID: the ID of the user in question
+  * Post ID: the ID of the post
+  * Liked on: the time the post was liked, if this is filled, the user has liked the post
+  * Disliked on: the time a post was disliked by a user
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Follows
+The relationship between two users  
+* A user may follow many other users
+* One user may have many followers
+* Track:
+  * User 1 ID: the ID of the first user
+  * User ID 2: the ID of the second user
+  * User 1 followed user 2 on: the time user 1 followed user 2, null if user 1 is not following user 2
