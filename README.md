@@ -4,6 +4,7 @@
 
 
 ## Business Rules
+The constraints and requirements of the database.
 
 ### Users
 The people who use the site  
