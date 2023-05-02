@@ -1,8 +1,7 @@
-<div align="center">
-    <h1>Our Place</h1>
-</div>
+# Our Place
 
-* [Business Rules](## Business Rules)
+* [Business Rules](##-business-rules)
+
 
 ## Business Rules
 
