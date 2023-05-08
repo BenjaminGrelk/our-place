@@ -5,6 +5,10 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+$app->bind('path.public', function() {
+return __DIR__;
+});
+
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance
