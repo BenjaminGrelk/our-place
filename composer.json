@@ -69,6 +69,8 @@
      "php artisan clear-compiled",
      "php artisan key:generate",
      "php artisan config:cache",
-     "chmod -744 .env"
+     "chmod -744 .env",
+     "npm install",
+     "npm run production"
  ]
 }
