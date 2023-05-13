@@ -11,9 +11,17 @@ class MainController
     public function index()
     {
         if (auth()->check()) {
-            return redirect()->route('dashboard');
+            // Pass in the authenticated user
+            return redirect()->route('home', auth()->user());
         }
 
         return redirect()->route('register');
+    }
+
+    // Home route, passing in auth middleware auth()->user()
+    public function home()
+    {
+        // Pass in the authenticated user
+        return view('home', ['current_user' => auth()->user()]);
     }
 }

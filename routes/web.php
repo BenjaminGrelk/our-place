@@ -20,10 +20,11 @@ Route::get(
     [MainController::class, 'index']
 )->name('main');
 
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Home route, passing in auth middleware auth()->user()
+Route::get(
+    '/home',
+    [MainController::class, 'home']
+)->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

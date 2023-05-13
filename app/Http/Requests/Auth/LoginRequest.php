@@ -56,9 +56,7 @@ class LoginRequest extends FormRequest
                 ->redirectTo(route('login'));
         } else {
             // If the user exists, log them in
-            $auth_user = $user[0];
-            $this->session()->put('user', $auth_user);
-            auth::login($auth_user);
+            Auth::loginUsingId($user[0]->id);
         }
 
 

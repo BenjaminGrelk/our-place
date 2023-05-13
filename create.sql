@@ -1,38 +1,47 @@
 # Remove the old database and user
-drop database if exists our_place;
-create database our_place;
-use our_place;
+drop
+    database if exists our_place;
+create
+    database our_place;
+use
+    our_place;
 
 # Create the new user
-create user if not exists 'our_place'@'localhost' identified by 'password';
-grant all privileges on our_place.* to 'our_place'@'localhost';
-set password for 'our_place'@'localhost' = 'password';
+create
+    user if not exists 'our_place'@'localhost' identified by 'password';
+grant all privileges on our_place.* to
+    'our_place'@'localhost';
+set
+    password for 'our_place'@'localhost' = 'password';
 
 
 # Create the tables
 create table users
 (
-    user_id         int          not null auto_increment,
-    username        varchar(255) not null unique,
-    password        varchar(255) not null,
+    id              int auto_increment,
+    username        varchar(255)                         not null unique,
+    password        varchar(255)                         not null,
     status          varchar(50),
     description     varchar(500),
     profile_picture blob,
     external_link   varchar(100),
     is_admin        boolean,
     joined_on       datetime,
-    primary key (user_id)
-);
+    updated_at      datetime,
+    created_at      datetime default current_timestamp() not null,
+    primary key (id)
+) engine = InnoDB;
 
 create table follows
 (
-    current_user_id      int not null,
-    target_user_id       int not null,
+    current_id           int not null,
+    target_id            int not null,
     follows_target_since datetime default null,
-    primary key (current_user_id, target_user_id),
-    foreign key (current_user_id) references users (user_id),
-    foreign key (target_user_id) references users (user_id),
-    check (follows.current_user_id != follows.target_user_id)
+    primary key (current_id, target_id),
+    foreign key (current_id) references users (id),
+    foreign key (target_id) references users (id),
+    check (follows.current_id != follows.target_id
+        )
 ) engine = InnoDB;
 
 create table channels
@@ -56,19 +65,19 @@ create table posts
     reply_to   int,
     created_on datetime     not null,
     primary key (post_id),
-    foreign key (author_id) references users (user_id),
+    foreign key (author_id) references users (id),
     foreign key (channel_id) references channels (channel_id),
     foreign key (reply_to) references posts (post_id)
 ) engine = InnoDB;
 
 create table likes
 (
-    user_id     int not null,
+    id          int not null,
     post_id     int not null,
     liked_on    datetime default null,
     disliked_on datetime default null,
-    primary key (user_id, post_id),
-    foreign key (user_id) references users (user_id),
+    primary key (id, post_id),
+    foreign key (id) references users (id),
     foreign key (post_id) references posts (post_id)
 ) engine = InnoDB;
 
@@ -83,7 +92,7 @@ values ('jakethegr8', 'iamcool123', 'Working on some projects.', 'I like to make
        ('user1', 'user1', 'I am user1', 'I am user1', null, false, '2021-11-23 04:32:50'),
        ('user2', 'user2', 'I am user2', 'I am user2', null, false, '2021-11-23 04:32:50');
 
-insert into follows (current_user_id, target_user_id, follows_target_since)
+insert into follows (current_id, target_id, follows_target_since)
 values (1, 2, '2021-01-20 10:12:2'),
        (1, 5, '2021-01-20 10:12:2'),
        (2, 1, '2021-01-20 10:12:2'),
@@ -119,7 +128,7 @@ values (1, 1, 'Hello World', 'Hello World!', null, null, '2021-01-20 10:12:2'),
        (3, 4, 'Hello World', 'Hello World!', null, null, '2021-01-20 10:12:2'),
        (3, 5, 'Hello World', 'Hello World!', null, null, '2021-01-20 10:12:2');
 
-insert into likes (user_id, post_id, liked_on, disliked_on)
+insert into likes (id, post_id, liked_on, disliked_on)
 values (1, 1, '2021-01-20 10:12:2', null),
        (1, 2, '2021-01-20 10:12:2', null),
        (1, 3, '2021-01-20 10:12:2', null),
