@@ -32,4 +32,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Channel routes using /channels/{channel_id}
+Route::get(
+    '/channels/{channel_id}', [MainController::class, 'channel']
+)->name('channel');
+
+// Add post route using POST method
+Route::post(
+    '/posts', [MainController::class, 'addPost']
+)->name('add_post');
+
 require __DIR__ . '/auth.php';

@@ -2,7 +2,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>{{ config('app.name', 'Laravel') }} - Login</title>
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 </head>
 <body>
     <form method="POST" action="{{ route('login') }}">
