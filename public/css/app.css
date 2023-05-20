@@ -1,0 +1,79 @@
+html {
+    font-family: "Times New Roman", Times, serif;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    text-align: center;
+}
+
+.channel {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 20%;
+    margin: 0 auto;
+    background-color: #efefef;
+}
+
+.channel_title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.post {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 30%;
+    margin: 0 auto;
+    background-color: #efefef;
+}
+
+.post_title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.post_created {
+    font-size: 10px;
+    /* Good font for italics */
+    font-family: "ui-rounded";
+    /* Make italics */
+    font-style: italic;
+}
+
+.login-form {
+    width: 340px;
+    margin: 50px auto;
+    font-size: 15px;
+}
+
+.login-form form {
+    margin-bottom: 15px;
+    background: #f7f7f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.login-form input {
+    /* Make inputs thinner */
+    padding: 3px;
+    height: 20px;
+    font-size: 15px;
+}
+
+footer  {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: lightgrey;
+    color: black;
+    text-align: center;
+}
+
+footer a {
+    color: blue;
+}
