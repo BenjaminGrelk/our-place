@@ -23,10 +23,15 @@ class MainController
     // Home route, passing in auth middleware auth()->user()
     public function home()
     {
+        // Get all channels ordered by number of posts
         $channels = DB::select('
             select *
             from channels
-            order by created_on desc
+            order by (
+                select count(*)
+                from posts
+                where posts.channel_id = channels.channel_id
+            ) desc
             ');
 
         // Pass in the authenticated user
@@ -51,17 +56,21 @@ class MainController
         ]);
     }
 
-    public function addPost()
+    public function addChannel()
     {
-        global $channel_id;
-        $channel_id = request()->input('channel_id');
-        $user_id = auth()->user()->id;
-        DB::insert('
-            insert into posts (channel_id, author_id, title, content, reply_to, created_on)
-                values (?, ?, ?, ?, ?, ?)', [
-            $channel_id, $user_id, request()->input('title'), request()->input('content'),
-            request()->input('reply_to'), date('Y-m-d H:i:s')
-        ]);
-        return redirect()->route('channel', ['channel_id' => $channel_id]);
+        $channel_name = request('name');
+        $channel_description = request('description');
+        if (strlen($channel_name) > 50) {
+            return redirect()->route('home');
+        }
+        if (strlen($channel_description) > 100) {
+            return redirect()->route('home');
+        }
+        if (empty($channel_name)) {
+            return redirect()->route('home');
+        }
+        DB::insert('insert into channels (name, created_by, description, created_on) values (?, ?, ?, ?)', [
+            $channel_name, auth()->user()->id, $channel_description, date("Y-m-d H:i:s")]);
+        return redirect()->route('home');
     }
 }

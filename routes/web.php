@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +40,27 @@ Route::get(
 
 // Add post route using POST method
 Route::post(
-    '/posts', [MainController::class, 'addPost']
+    '/add_post', [PostController::class, 'add']
 )->name('add_post');
+
+// Add route for editing a post
+Route::post(
+    '/editing_post', [PostController::class, 'editing']
+)->name('editing_post');
+
+// Add edit post route using POST method
+Route::post(
+    '/edit_post', [PostController::class, 'edit']
+)->name('edit_post');
+
+// Add delete post route using POST method
+Route::post(
+    '/delete_post', [PostController::class, 'delete']
+)->name('delete_post');
+
+// Add channel
+Route::post(
+    '/add_channel', [MainController::class, 'addChannel']
+)->name('add_channel');
 
 require __DIR__ . '/auth.php';

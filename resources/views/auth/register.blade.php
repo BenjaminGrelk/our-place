@@ -2,8 +2,12 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <title>{{ config('app.name', 'Laravel') }} - Register</title>
+    <link rel="stylesheet" href="../css/app.css">
 </head>
-<body>
+<body class="login-form">
+<h1>
+    Register
+</h1>
 <form method="POST" action="{{ route('register') }}">
     @csrf
     <!-- Username -->
@@ -49,4 +53,10 @@
     </div>
 </form>
 </body>
+<footer>
+    <p>
+        &copy;<script>document.write(new Date().getFullYear());</script>
+        <a href="mailto:bjgrelk@mail.mccneb.edu">Ben Grelk</a>
+    </p>
+</footer>
 </html>

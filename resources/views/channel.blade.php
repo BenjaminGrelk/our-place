@@ -14,9 +14,13 @@
             {{ $channel->name }}
         </h1>
         <a href="{{ route('home') }}">Home</a>
-        <h2>
+        <h2>Description</h2>
+        <p class="description">
+            {{ $channel->description }}
+        </p>
+        <h3>
             Posts
-        </h2>
+        </h3>
         <!-- Add post form -->
         <form method="POST" action="{{ route('add_post', ['channel_id' => $channel->channel_id]) }}">
             @csrf
@@ -31,20 +35,37 @@
             </x-primary-button>
         </form>
         @foreach($posts as $post)
-            <h3 class="post_title">
-                {{ $post->title }}
-            </h3>
-            <p class="post_content">
-                {{ $post->content }}
-            </p>
-            <p class="creation">
-                {{ $post->created_on }}
-            </p>
-            <p>
-                {{ $post->author_id }}
-            </p>
-            @endforeach
-            </p>
+            <div class="post" id="{{ $post->post_id }}">
+                <p class="post_title">
+                    {{ $post->title }}
+                </p>
+                    <?php $author = DB::table('users')->where('id', $post->author_id)->first(); ?>
+                <p class="post_author">
+                    By {{ $author->username }}
+                </p>
+                <p class="post_content">
+                    {{ $post->content }}
+                </p>
+                <p class="post_created">
+                    Made on {{ $post->created_on }}
+                </p>
+                @if (($post->author_id == $current_user['id']) || ($current_user['is_admin']))
+                    <!-- Edit the post -->
+                    <form method="POST" class="edit_post"
+                          action="{{ route('editing_post', ['post_id' => $post->post_id, 'channel_id' => $channel->channel_id]) }}">
+                        @csrf
+                        <button type="submit">Edit</button>
+                    </form>
+
+                    <!-- Delete the post -->
+                    <form method="POST" class="delete_post"
+                          action="{{ route('delete_post', ['post_id' => $post->post_id, 'channel_id' => $channel->channel_id]) }}">
+                        @csrf
+                        <button type="submit">Delete</button>
+                    </form>
+                @endif
+            </div>
+        @endforeach
     </div>
 </body>
 </html>
