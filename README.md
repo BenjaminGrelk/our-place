@@ -22,7 +22,7 @@ You may view this project running on my domain through Heroku at
 [https://our-place.grelk.tech](https://our-place.grelk.tech).
 
 If you would like to run this project locally, you may clone this repository, install
-php and myswl, and run the following commands in the root directory of the project:
+php and mysql, and run the following commands in the root directory of the project:
 
 Install dependencies:
 
