@@ -9,11 +9,11 @@ Welcome to Our Place, a simple social media platform made with
 
 ## Table of Contents
 
-* [Deployment](#-deployment)
-* [Executive Summary](##-executive-summary)
-* [Business Rules](##-business-rules)
-* [Entity Relationship Diagram](##-entity-relationship-diagram)
-* [Create Script](##-create-script)
+* [Deployment](#deployment)
+* [Executive Summary](#executive-summary)
+* [Business Rules](#business-rules)
+* [Entity Relationship Diagram](#entity-relationship-diagram)
+* [Create Script](#create-script)
 
 ## Deployment
 
