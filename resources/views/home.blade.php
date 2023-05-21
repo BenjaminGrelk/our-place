@@ -22,22 +22,24 @@
         <h2>
             Channels
         </h2>
-        <!-- Add channel form -->
-        <h3>
-            Add Channel
-        </h3>
-        <form method="POST" action="{{ route('add_channel') }}">
-            @csrf
-            <x-label for="name" :value="__('Name')"/>
-            <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                     autofocus/>
-            <x-label for="description" :value="__('Description')"/>
-            <x-input id="description" class="block mt-1 w-full" type="text" name="description"
-                     :value="old('description')" required autofocus/>
-            <x-primary-button class="ml-4">
-                {{ __('Add Channel') }}
-            </x-primary-button>
-        </form>
+        @if ($current_user->is_admin)
+            <!-- Add channel form -->
+            <h3>
+                Add Channel
+            </h3>
+            <form method="POST" action="{{ route('add_channel') }}">
+                @csrf
+                <x-label for="name" :value="__('Name')"/>
+                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                         autofocus/>
+                <x-label for="description" :value="__('Description')"/>
+                <x-input id="description" class="block mt-1 w-full" type="text" name="description"
+                         :value="old('description')" required autofocus/>
+                <x-primary-button class="ml-4">
+                    {{ __('Add Channel') }}
+                </x-primary-button>
+            </form>
+        @endif
 
         @foreach($channels as $channel)
             <div class="channel" id="{{ $channel->channel_id }} ">
