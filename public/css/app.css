@@ -82,7 +82,7 @@ footer a {
 }
 
 /* Style for phone screens and other small displays */
-@media (max-width: 1200px) {
+@media (min-width: 600px) {
     .channel {
         width: 80%;
     }
