@@ -53,8 +53,11 @@ body {
 .login-form form {
     margin-bottom: 15px;
     background: #f7f7f7;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
     padding: 30px;
+    width: 75%;
+    /* Make them align right */
+    text-align: center;
 }
 
 .login-form input {
@@ -76,4 +79,15 @@ footer  {
 
 footer a {
     color: blue;
+}
+
+/* Style for phone screens and other small displays */
+@media only screen and (max-width: 600px) {
+    .channel {
+        width: 80%;
+    }
+
+    .post {
+        width: 80%;
+    }
 }

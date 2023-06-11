@@ -3,16 +3,13 @@ drop
     database if exists our_place;
 create
     database our_place;
-use
-    our_place;
+use our_place;
 
 # Create the new user
 create
     user if not exists 'our_place'@'localhost' identified by 'password';
 grant all privileges on our_place.* to
     'our_place'@'localhost';
-set
-    password for 'our_place'@'localhost' = 'password';
 
 
 # Create the tables
